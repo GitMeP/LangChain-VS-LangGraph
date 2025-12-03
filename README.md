@@ -49,109 +49,112 @@ Agentic AI Appication can be developed using some of the components that are ava
 
 
 
+# LangChain vs LangGraph
 
-LangChain vs LangGraph
+A comparison between **LangChain** and **LangGraph**, two popular frameworks used to build Generative AI applications and complex Agentic AI systems.
 
-A clear comparison of LangChain and LangGraph, two popular frameworks used to build Generative AI applications and complex Agentic AI systems.
+---
 
-🌟 LangChain
+## 🌟 LangChain
 
-LangChain is commonly used to build LLM-powered applications—from chatbots to automation tools. It provides utilities for prompts, models, tools, vector stores, and integrations.
+LangChain is widely used for building **LLM-powered applications** such as chatbots, RAG systems, and automation tools. It provides utilities for prompts, LLMs, tools, and vector datastores.
 
-🔧 Core Pipeline
+---
 
-A LangChain application typically follows three main steps/components:
+### 🔧 Core Pipeline
 
-Retrieve
+A LangChain application typically involves **three main components**:
 
-Summarize
+1. **Retrieve**
+2. **Summarize**
+3. **Answer / Output**
 
-Answer / Output
+---
 
-🔍 1. Retrieve
+### 🔍 1. Retrieve
 
-This step brings external or internal data into the system and prepares it for retrieval.
+Handles bringing data into the system and preparing it for context retrieval.
 
-Data Ingestion
-Load data from various sources such as:
+- **Data Ingestion**  
+  Load data from:  
+  - PDFs  
+  - Web scraping  
+  - CSV / Excel  
+  - 3rd-party APIs (Wikipedia, ArXiv)  
+  Uses **document loaders** to parse the content.
 
-PDFs
+- **Text Splitting**  
+  Splits data into smaller chunks to fit within LLM context windows.
 
-Web-scraped content
+- **Vector Databases**  
+  - Converts text into **vector embeddings**  
+  - Stores them for **semantic search**  
+  - Retrieves the most relevant context for LLM input.
 
-Excel / CSV
+---
 
-APIs (e.g., Wikipedia, ArXiv)
-Document loaders are used for parsing.
+### 🧠 2. Summarize (Chaining)
 
-Text Splitting
-Because LLMs have a context window limit, data is split into smaller chunks.
+LangChain follows a **sequential execution model (DAG – Directed Acyclic Graph)**.
 
-Vector Databases
+Common chains include:
 
-Text chunks are converted into vector embeddings.
+- **Prompt Chain** – instructions for the LLM  
+- **LLM Chain** – integrates the model  
+- **Context Chain** – supplies retrieved context  
 
-Stored in a vector DB for semantic search or graph search.
+Execution is **strictly forward**, no loops or backtracking.
 
-This enables retrieving the most relevant context to feed into the LLM.
+---
 
-🧠 2. Summarize (Chaining)
+### 🟢 3. Output
 
-LangChain generally follows a sequential execution model—a DAG (Directed Acyclic Graph).
-You create multiple “chains” that run in order:
+Possible outcomes:
 
-Prompt Chain – define instructions for the LLM
+- Persistent memory  
+- Passing prompts to a separate LLM  
+- Generating the final response  
 
-LLM Chain – choose and configure the model
+---
 
-Context Chain – fetch and supply context from the vector database
+## 🚀 LangGraph
 
-The execution flows only forward, no feedback loops.
+LangGraph is designed to build **stateful, multi-agent, agentic AI applications** where multiple agents cooperate to complete complex workflows.
 
-🟢 3. Output
+---
 
-The output stage may include:
+### 🧩 Key Concepts
 
-Persistent memory
+- Tasks  
+- Nodes  
+- Edges  
+- Graph structure  
 
-Sending prompts to another LLM
+Unlike LangChain, LangGraph **does not have to follow a DAG**.  
+It supports **backtracking, loops, iterative refinement**, and more.
 
-Final answer generation
+---
 
-🚀 LangGraph
+### 🔁 Feedback & Multi-Agent Control
 
-LangGraph is focused on building stateful, multi-agent, agentic AI applications.
-It enables multiple AI agents to communicate and collaborate across a complex workflow.
+- Agents can move back and forth between tasks  
+- Output from one agent can feed another  
+- Full support for **feedback loops**  
+- Supports **human-in-the-loop** workflows  
 
-🧩 Key Concepts
+This makes LangGraph ideal for building advanced **Agentic AI systems**.
 
-Tasks
+---
 
-Nodes
+## 🆚 Summary Comparison
 
-Edges
+| Feature | LangChain | LangGraph |
+|--------|-----------|-----------|
+| Execution Model | Sequential (DAG) | Non-linear / loop-capable graph |
+| Typical Use Case | RAG, LLM apps, simple workflows | Multi-agent, complex workflows |
+| Supports Loops | ❌ No | ✔️ Yes |
+| Human Feedback | Basic | Strong support |
+| Architecture | Chains | Nodes + Edges |
 
-Graph Structure
+---
 
-Unlike LangChain, it is not limited to a DAG.
-LangGraph supports non-linear execution, including loops, backtracking, revisiting tasks, and more.
-
-🔁 Feedback & Control
-
-Tasks can revisit earlier stages
-
-Output from one agent can be fed into another
-
-Supports feedback loops
-
-Human-in-the-loop feedback can also be integrated
-
-This makes LangGraph ideal for agentic AI, where multiple agents coordinate to solve complex problems.
-
-🆚 Summary
-Feature	LangChain	LangGraph
-Execution style	Sequential (DAG)	Non-linear, stateful graph
-Best for	LLM apps, RAG, simple pipelines	Multi-agent systems, complex workflows
-Supports loops	❌ No	✔️ Yes
-Human feedback	Basic	Built-in support
-Architecture	Chains	Nodes + Edges (Graph)
