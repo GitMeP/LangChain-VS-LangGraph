@@ -4,7 +4,7 @@ A comparison between **LangChain** and **LangGraph**, two popular frameworks use
 
 ---
 
-## 🌟 LangChain
+## LangChain
 
 LangChain is widely used for building **LLM-powered applications** such as chatbots, RAG systems, and automation tools. It provides utilities for prompts, LLMs, tools, and vector datastores.
 
@@ -66,7 +66,7 @@ It might use:
 
 ---
 
-## 🚀 LangGraph
+## LangGraph
 
 LangGraph is designed to build **stateful, multi-agent, agentic AI applications** where multiple agents cooperate to complete complex workflows.
 
